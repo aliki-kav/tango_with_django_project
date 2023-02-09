@@ -21,7 +21,6 @@ def index(request):
     context_dict['pages']=page_list
 
     visitor_cookie_handler(request)
-    # context_dict['visits']=request.session['visits']
 
     response= render(request, 'rango/index.html',context=context_dict)
     return response
@@ -35,12 +34,10 @@ def about(request):
     
     visitor_cookie_handler(request)
     context_dict={}
-    #context_dict['visits']=request.session['visits']
-    context_dict['visits']=int(request.COOKIES.get('visits', '1'))
+    context_dict['visits']=request.session['visits']
 
     response= render(request, 'rango/about.html',context=context_dict)
     return response
-   # return render(request, 'rango/about.html', {})
 
 def show_category(request, category_name_slug):
     #context dict to pass to template
